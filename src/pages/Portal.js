@@ -1,22 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import {
   Layout,
   Menu,
   Button,
-  Row,
-  Col,
   Typography,
+  Card,
   Form,
   Input,
-  Switch,
 } from "antd";
-import keyGenerateBg from "../assets/images/keyGenerateBg.png";
-import NodesForm from "../components/NodesForm";
 
-function onChange(checked) {
-  console.log(`switch to ${checked}`);
-}
+import { Link } from "react-router-dom";
+
+
 const { Title } = Typography;
 const { Header, Content } = Layout;
 const template = [
@@ -81,10 +76,8 @@ const signin = [
     />
   </svg>,
 ];
-const SignIn = () => {
-
-  const [flag, setFlag] = useState(false);
-
+export default class Portal extends Component {
+  render() {
     const onFinish = (values) => {
       console.log("Success:", values);
     };
@@ -94,10 +87,10 @@ const SignIn = () => {
     };
     return (
       <>
-        <Layout className="layout-default layout-signin">
+        <div className="layout-default ant-layout layout-sign-up">
           <Header>
             <div className="header-col header-brand">
-              <h5>Generate Key</h5>
+              <h5>API Analytics Portal</h5>
             </div>
             <div className="header-col header-nav">
               <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
@@ -108,7 +101,7 @@ const SignIn = () => {
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="3">
-                  <Link to="/portal">
+                  <Link to="/sign-up">
                     {signup}
                     <span> Portal</span>
                   </Link>
@@ -122,84 +115,57 @@ const SignIn = () => {
               </Menu>
             </div>
           </Header>
-          <Content className="signin">
-            <Row gutter={[24, 0]} justify="space-around">
-              <Col
-                xs={{ span: 24, offset: 0 }}
-                lg={{ span: 6, offset: 2 }}
-                md={{ span: 12 }}
+
+          <Content className="p-0">
+            <div className="sign-up-header">
+              <div className="content">
+                <Title>API Analytics Portal</Title>
+              </div>
+            </div>
+
+            <Card
+              className="card-signup header-solid h-full ant-card pt-0"
+              // title={<h5>Analytics Form</h5>}
+              bordered="false"
+            >
+              <Form
+                name="basic"
+                initialValues={{ remember: true }}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                className="row-col"
               >
-                <Title className="mb-15">Generate Key</Title>
-                <Title className="font-regular text-muted" level={5}>
-                  Enter atleast two nodes to generate keys!
-                </Title>
-                <NodesForm />
-                <Form
-                  onFinish={onFinish}
-                  onFinishFailed={onFinishFailed}
-                  layout="vertical"
-                  className="row-col"
+                <Form.Item
+                  name="Application Key"
+                  rules={[
+                    { required: true, message: "Please input your Application key!" },
+                  ]}
                 >
-                  {/* <Form.Item>
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      style={{ width: "100%" }}
-                    >
-                      CLICK HERE TO GENERATE KEYS
-                    </Button>
-                  </Form.Item> */}
+                  <Input placeholder="Application Key" />
+                </Form.Item>
+                <Form.Item
+                  name="Secret Key"
+                  rules={[
+                    { required: true, message: "Please input your secret key!" },
+                  ]}
+                >
+                  <Input placeholder="Secret Key" />
 
-                  {/* <Form.Item
-                    className="username"
-                    label="Application Key"
-                    name="applicationKey"
+                </Form.Item>
+                <Form.Item>
+                  <Button
+                    style={{ width: "100%" }}
+                    type="primary"
+                    htmlType="submit"
                   >
-                    <Input placeholder="Application Key" readOnly />
-                  </Form.Item>
-
-                  <Form.Item
-                    className="username"
-                    label="Secret Key"
-                    name="secretKey"
-                  >
-                    <Input placeholder="Secret Key" />
-                  </Form.Item> */}
-
-                  {/* <Form.Item>
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      style={{ width: "100%" }}
-                    >
-                      SIGN IN
-                    </Button>
-                  </Form.Item> */}
-
-
-                  {/* <p className="font-semibold text-muted">
-                    Don't have an account?{" "}
-                    <Link to="/sign-up" className="text-dark font-bold">
-                      Sign Up
-                    </Link>
-                  </p> */}
-                </Form>
-              </Col>
-              <Col
-                className="sign-img"
-                style={{ padding: 12 }}
-                xs={{ span: 24 }}
-                lg={{ span: 12 }}
-                md={{ span: 12 }}
-              >
-                <img src={keyGenerateBg} alt="" />
-              </Col>
-            </Row>
+                    GET ANALYTICS
+                  </Button>
+                </Form.Item>
+              </Form>
+            </Card>
           </Content>
-
-        </Layout>
+        </div>
       </>
     );
   }
-
-export default SignIn;
+}
