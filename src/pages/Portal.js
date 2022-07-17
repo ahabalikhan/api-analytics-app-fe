@@ -9,8 +9,8 @@ import {
   Input,
 } from "antd";
 
-import { Link } from "react-router-dom";
-
+import { Link, useHistory } from "react-router-dom";
+import { getToken } from "../ApiServices/portal-auth.service";
 
 const { Title } = Typography;
 const { Header, Content } = Layout;
@@ -76,10 +76,15 @@ const signin = [
     />
   </svg>,
 ];
-export default class Portal extends Component {
-  render() {
-    const onFinish = (values) => {
+const Portal = () => {
+    const history = useHistory();
+    const onFinish = async (values) => {
       console.log("Success:", values);
+      var ok = await getToken(values);
+      console.log(123)
+      if (ok){
+        history.push("/dashboard");
+      }
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -136,7 +141,7 @@ export default class Portal extends Component {
                 className="row-col"
               >
                 <Form.Item
-                  name="Application Key"
+                  name="applicationKey"
                   rules={[
                     { required: true, message: "Please input your Application key!" },
                   ]}
@@ -144,7 +149,7 @@ export default class Portal extends Component {
                   <Input placeholder="Application Key" />
                 </Form.Item>
                 <Form.Item
-                  name="Secret Key"
+                  name="secretKey"
                   rules={[
                     { required: true, message: "Please input your secret key!" },
                   ]}
@@ -167,5 +172,6 @@ export default class Portal extends Component {
         </div>
       </>
     );
-  }
 }
+
+export default Portal;

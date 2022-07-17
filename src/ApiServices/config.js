@@ -1,10 +1,21 @@
 const CONTROLLER_NAMES = {
-    CONSUMER_APPLICATION: "/consumer-application"
+    CONSUMER_APPLICATION: "/consumer-application",
+    NODE: "/node",
+    PORTAL_AUTH: "/portal-auth"
 }
 
 export const SERVICE_CONFIG_URLS = {
     BASE_URL: "https://api-analytics-app-be.herokuapp.com/api/v1",
     CONSUMER_APPLICATION: {
-        CREATE: CONTROLLER_NAMES.CONSUMER_APPLICATION
+        CREATE: CONTROLLER_NAMES.CONSUMER_APPLICATION,
+        TODAYS_REQUESTS: `${CONTROLLER_NAMES.CONSUMER_APPLICATION}/{token}/todays-requests`,
+        MONTHS_REQUESTS: `${CONTROLLER_NAMES.CONSUMER_APPLICATION}/{token}/months-requests`,
+        TOTAL_REQUESTS: `${CONTROLLER_NAMES.CONSUMER_APPLICATION}/{token}/total-requests`,
+    },
+    NODE: {
+        LIST: CONTROLLER_NAMES.NODE
+    },
+    PORTAL_AUTH:{
+        TOKEN: `${CONTROLLER_NAMES.PORTAL_AUTH}/token`
     }
 }

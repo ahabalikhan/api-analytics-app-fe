@@ -1,5 +1,7 @@
 import { Space, Table, Tag } from 'antd';
 import React from 'react';
+import { getNodeList } from '../../ApiServices/node.service';
+
 const columns = [
   {
     title: 'ID',
