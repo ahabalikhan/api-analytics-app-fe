@@ -108,7 +108,7 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="7">
-          <NavLink to="/sign-in">
+          <NavLink to="/generate-key">
             <span className="icon">{generateKey}</span>
             <span className="label">Generate Key</span>
           </NavLink>

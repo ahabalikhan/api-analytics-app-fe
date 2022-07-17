@@ -3062,3 +3062,25 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+.project-ant {
+  display: block;
+}
+
+p {
+  font-weight: 700;
+  line-height: 1.8;
+  margin-top: 1.5rem;
+}
+
+p span {
+  margin-right: 0.5rem;
+  background: #1890ff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  color: white;
+}
+
+.keys-section{
+  margin-top: 40px;
+}
