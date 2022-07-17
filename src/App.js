@@ -5,7 +5,7 @@ import Billing from "./pages/Billing";
 import Rtl from "./pages/Rtl";
 import Profile from "./pages/Profile";
 import Portal from "./pages/Portal";
-import SignIn from "./pages/SignIn";
+import GenerateKey from "./pages/GenerateKey";
 import Main from "./components/layout/Main";
 import "antd/dist/antd.css";
 import "./assets/styles/main.css";
@@ -16,13 +16,10 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/portal" exact component={Portal} />
-        <Route path="/sign-in" exact component={SignIn} />
+        <Route path="/generate-key" exact component={GenerateKey} />
         <Main>
           <Route exact path="/dashboard" component={Home} />
-          <Route exact path="/tables" component={Tables} />
-          <Route exact path="/billing" component={Billing} />
           <Route exact path="/rtl" component={Rtl} />
-          <Route exact path="/profile" component={Profile} />
           <Redirect from="*" to="/dashboard" />
         </Main>
       </Switch>

@@ -39,6 +39,7 @@ async function postUnAuthorized(url, queryParams) {
 
 async function post(url, data, config) {
     const response = await apiService.apiSauceInstance.post(url, data, config);
+    console.log(url, response);
     return apiService.handleResponse(response);
 }
 

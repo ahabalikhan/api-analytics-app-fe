@@ -13,6 +13,7 @@ import {
 } from "antd";
 import keyGenerateBg from "../assets/images/keyGenerateBg.png";
 import NodesForm from "../components/NodesForm";
+import Loading from '../components/Loading';
 
 function onChange(checked) {
   console.log(`switch to ${checked}`);
@@ -81,66 +82,71 @@ const signin = [
     />
   </svg>,
 ];
-const SignIn = () => {
+const GenerateKey = () => {
 
-  const [flag, setFlag] = useState(false);
+  const [keys, setKeys] = useState({
+    applicationKey: '',
+    secretKey: ''
+  });
 
-    const onFinish = (values) => {
-      console.log("Success:", values);
-    };
+  const [loading, setLoading] = useState(false);
 
-    const onFinishFailed = (errorInfo) => {
-      console.log("Failed:", errorInfo);
-    };
-    return (
-      <>
-        <Layout className="layout-default layout-signin">
-          <Header>
-            <div className="header-col header-brand">
-              <h5>Generate Key</h5>
-            </div>
-            <div className="header-col header-nav">
-              <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
-                <Menu.Item key="1">
-                  <Link to="/dashboard">
-                    {template}
-                    <span> Dashboard</span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="3">
-                  <Link to="/portal">
-                    {signup}
-                    <span> Portal</span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="4">
-                  <Link to="/sign-in">
-                    {signin}
-                    <span> Generate Key</span>
-                  </Link>
-                </Menu.Item>
-              </Menu>
-            </div>
-          </Header>
-          <Content className="signin">
-            <Row gutter={[24, 0]} justify="space-around">
-              <Col
-                xs={{ span: 24, offset: 0 }}
-                lg={{ span: 6, offset: 2 }}
-                md={{ span: 12 }}
+  const onFinish = (values) => {
+    console.log("Success:", values);
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+  return (
+    <>
+      <Layout className="layout-default layout-signin">
+        <Header>
+          <div className="header-col header-brand">
+            <h5>Generate Key</h5>
+          </div>
+          <div className="header-col header-nav">
+            <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
+              <Menu.Item key="1">
+                <Link to="/dashboard">
+                  {template}
+                  <span> Dashboard</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/portal">
+                  {signup}
+                  <span> Portal</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/generate-key">
+                  {signin}
+                  <span> Generate Key</span>
+                </Link>
+              </Menu.Item>
+            </Menu>
+          </div>
+        </Header>
+        <Content className="signin">
+          <Row gutter={[24, 0]} justify="space-around">
+            <Col
+              xs={{ span: 24, offset: 0 }}
+              lg={{ span: 6, offset: 2 }}
+              md={{ span: 12 }}
+            >
+              <Title className="mb-15">Generate Key</Title>
+              <Title className="font-regular text-muted" level={5}>
+                Enter atleast two nodes to generate keys!
+              </Title>
+              <NodesForm setKeys={setKeys} setLoading={setLoading} />
+              <Form
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                layout="vertical"
+                className="row-col"
               >
-                <Title className="mb-15">Generate Key</Title>
-                <Title className="font-regular text-muted" level={5}>
-                  Enter atleast two nodes to generate keys!
-                </Title>
-                <NodesForm />
-                <Form
-                  onFinish={onFinish}
-                  onFinishFailed={onFinishFailed}
-                  layout="vertical"
-                  className="row-col"
-                >
-                  {/* <Form.Item>
+                {/* <Form.Item>
                     <Button
                       type="primary"
                       htmlType="submit"
@@ -150,12 +156,17 @@ const SignIn = () => {
                     </Button>
                   </Form.Item> */}
 
-                  {/* <Form.Item
+                {loading && <Loading />}
+                {keys.applicationKey && keys.secretKey ? <section className='keys-section'>
+                  <p><span>API Key:</span>{keys.applicationKey}</p>
+                  <p><span>Secret Key:</span>{keys.secretKey}</p>
+                </section> : null}
+                {/* <Form.Item
                     className="username"
                     label="Application Key"
                     name="applicationKey"
                   >
-                    <Input placeholder="Application Key" readOnly />
+                    <Input placeholder="Application Key" value={keys.applicationKey} />
                   </Form.Item>
 
                   <Form.Item
@@ -163,10 +174,10 @@ const SignIn = () => {
                     label="Secret Key"
                     name="secretKey"
                   >
-                    <Input placeholder="Secret Key" />
+                    <Input placeholder="Secret Key" value={keys.secretKey} />
                   </Form.Item> */}
 
-                  {/* <Form.Item>
+                {/* <Form.Item>
                     <Button
                       type="primary"
                       htmlType="submit"
@@ -177,29 +188,29 @@ const SignIn = () => {
                   </Form.Item> */}
 
 
-                  {/* <p className="font-semibold text-muted">
+                {/* <p className="font-semibold text-muted">
                     Don't have an account?{" "}
                     <Link to="/sign-up" className="text-dark font-bold">
                       Sign Up
                     </Link>
                   </p> */}
-                </Form>
-              </Col>
-              <Col
-                className="sign-img"
-                style={{ padding: 12 }}
-                xs={{ span: 24 }}
-                lg={{ span: 12 }}
-                md={{ span: 12 }}
-              >
-                <img src={keyGenerateBg} alt="" />
-              </Col>
-            </Row>
-          </Content>
+              </Form>
+            </Col>
+            <Col
+              className="sign-img"
+              style={{ padding: 12 }}
+              xs={{ span: 24 }}
+              lg={{ span: 12 }}
+              md={{ span: 12 }}
+            >
+              <img src={keyGenerateBg} alt="" />
+            </Col>
+          </Row>
+        </Content>
 
-        </Layout>
-      </>
-    );
-  }
+      </Layout>
+    </>
+  );
+}
 
-export default SignIn;
+export default GenerateKey;

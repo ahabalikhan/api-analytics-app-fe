@@ -101,13 +101,13 @@ export default class Portal extends Component {
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="3">
-                  <Link to="/sign-up">
+                  <Link to="/portal">
                     {signup}
                     <span> Portal</span>
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="4">
-                  <Link to="/sign-in">
+                  <Link to="/generate-key">
                     {signin}
                     <span> Generate Key</span>
                   </Link>

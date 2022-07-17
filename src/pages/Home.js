@@ -22,6 +22,8 @@ import Paragraph from "antd/lib/typography/Paragraph";
 
 import Echart from "../components/chart/EChart";
 import LineChart from "../components/chart/LineChart";
+import Graph from "../components/chart/Graph";
+import NodesTable from "../components/tables/NodesTable";
 
 import ava1 from "../assets/images/logo-shopify.svg";
 import ava2 from "../assets/images/logo-atlassian.svg";
@@ -34,6 +36,18 @@ import team2 from "../assets/images/team-2.jpg";
 import team3 from "../assets/images/team-3.jpg";
 import team4 from "../assets/images/team-4.jpg";
 import card from "../assets/images/info-card-1.jpg";
+
+var graphData = {
+  nodes: [{ id: "A" }, { id: "B" }, { id: "C" }, { id: "D" }],
+  links: [
+    { source: "B", target: "C", value: 8 },
+    { source: "C", target: "D", value: 10 },
+    { source: "D", target: "A", value: 6 },
+    { source: "B", target: "A", value: 6 },
+    { source: "B", target: "D", value: 6 },
+    { source: "D", target: "D", value: 6, curvature: 0.3 }
+  ]
+};
 
 function Home() {
   const { Title, Text } = Typography;
@@ -376,6 +390,34 @@ function Home() {
         </Row>
 
         <Row gutter={[24, 0]}>
+          <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24">
+            <Card bordered={false} className="criclebox h-full">
+              <NodesTable />
+            </Card>
+          </Col>
+          <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24">
+            <Card bordered={false} className="criclebox h-full">
+              <div className="project-ant">
+                <div>
+                  <Title level={5}>Graph</Title>
+                </div>
+                <Graph graphData={graphData} />
+              </div>
+            </Card>
+          </Col>
+
+          {/* <Col xs={24} sm={24} md={12} lg={12} xl={16} className="mb-24">
+            <Card bordered={false} className="criclebox cardbody h-full">
+              <div className="project-ant">
+                <div>
+                  <Title level={5}>Graph</Title>
+                 
+                </div>
+                <Graph graphData={graphData} />
+              </div>
+            </Card>
+          </Col> */}
+
           {/* <Col xs={24} sm={24} md={12} lg={12} xl={16} className="mb-24">
             <Card bordered={false} className="criclebox cardbody h-full">
               <div className="project-ant">
@@ -478,7 +520,7 @@ function Home() {
           </Col> */}
         </Row>
 
-       
+
       </div>
     </>
   );
