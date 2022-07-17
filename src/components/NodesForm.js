@@ -36,17 +36,14 @@ const formItemLayoutWithOutLabel = {
 
 const NodesForm = ({setKeys, setLoading}) => {
     const onFinish = (values) => {
-        console.log('Received values of form:', values);
         setLoading(true);
         addConsumerApplicationAndGetKeys(values.names)
             .then((res) => 
                 {
-                    console.log(res.data);
                     setLoading(false);
                     setKeys({ applicationKey: res.data.applicationKey, secretKey: res.data.secretKey });
                 })
             .catch((err) => {
-                console.log(err);
                 setLoading(false);
             });
     };

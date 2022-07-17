@@ -4,7 +4,6 @@ import { SERVICE_CONFIG_URLS } from "./config";
 
 export async function addConsumerApplicationAndGetKeys(nodeNames){
     const payload = { nodeNames: nodeNames};
-    console.log('hello');
     const keysResponse = await apiService.post( SERVICE_CONFIG_URLS.CONSUMER_APPLICATION.CREATE, payload);
 
     return keysResponse;
