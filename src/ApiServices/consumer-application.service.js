@@ -40,3 +40,13 @@ export async function getTotalRequests(){
 
     return keysResponse;
 }
+
+export async function getChart(){
+    const token = LocalStorageService.get("token", null)
+    if (token == null){
+        return null;
+    }
+    const chartResponse = await apiService.get(utilService.createDynamicUrl(SERVICE_CONFIG_URLS.CONSUMER_APPLICATION.CHART, {token:token}));
+
+    return chartResponse;
+}

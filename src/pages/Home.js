@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   Card,
@@ -36,6 +36,7 @@ import team2 from "../assets/images/team-2.jpg";
 import team3 from "../assets/images/team-3.jpg";
 import team4 from "../assets/images/team-4.jpg";
 import card from "../assets/images/info-card-1.jpg";
+import { getMonthsRequests, getTodaysRequests, getTotalRequests } from "../ApiServices/consumer-application.service";
 
 var graphData = {
   nodes: [{ id: "A" }, { id: "B" }, { id: "C" }, { id: "D" }],
@@ -147,7 +148,7 @@ function Home() {
       today: "Today’s Users",
       title: "$53,000",
       persent: "+30%",
-      icon: dollor,
+      icon: profile,
       bnb: "bnb2",
     },
     {
@@ -161,193 +162,66 @@ function Home() {
       today: "Total Users",
       title: "+1,200",
       persent: "-20%",
-      icon: heart,
+      icon: profile,
       bnb: "redtext",
     },
     {
       today: "New Orders",
       title: "$13,200",
       persent: "10%",
-      icon: cart,
+      icon: profile,
       bnb: "bnb2",
     },
   ];
 
-  const list = [
-    {
-      img: ava1,
-      Title: "Soft UI Shopify Version",
-      bud: "$14,000",
-      progress: <Progress percent={60} size="small" />,
-      member: (
-        <div className="avatar-group mt-2">
-          <Tooltip placement="bottom" title="Ryan Tompson">
-            <img className="tootip-img" src={team1} alt="" />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Romina Hadid">
-            <img className="tootip-img" src={team2} alt="" />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Alexander Smith">
-            <img className="tootip-img" src={team3} alt="" />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Jessica Doe">
-            <img className="tootip-img" src={team4} alt="" />
-          </Tooltip>
-        </div>
-      ),
-    },
-    {
-      img: ava2,
-      Title: "Progress Track",
-      bud: "$3,000",
-      progress: <Progress percent={10} size="small" />,
-      member: (
-        <div className="avatar-group mt-2">
-          <Tooltip placement="bottom" title="Ryan Tompson">
-            <img className="tootip-img" src={team1} alt="" />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Romina Hadid">
-            <img className="tootip-img" src={team2} alt="" />
-          </Tooltip>
-        </div>
-      ),
-    },
-    {
-      img: ava3,
-      Title: "Fix Platform Errors",
-      bud: "Not Set",
-      progress: <Progress percent={100} size="small" status="active" />,
-      member: (
-        <div className="avatar-group mt-2">
-          <Tooltip placement="bottom" title="Ryan Tompson">
-            <img className="tootip-img" src={team1} alt="" />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Romina Hadid">
-            <img className="tootip-img" src={team1} alt="" />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Alexander Smith">
-            <img className="tootip-img" src={team3} alt="" />
-          </Tooltip>
-        </div>
-      ),
-    },
-    {
-      img: ava4,
-      Title: "Launch new Mobile App",
-      bud: "$20,600",
-      progress: <Progress percent={100} size="small" status="active" />,
-      member: (
-        <div className="avatar-group mt-2">
-          <Tooltip placement="bottom" title="Ryan Tompson">
-            <img className="tootip-img" src={team1} alt="" />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Romina Hadid">
-            <img className="tootip-img" src={team2} alt="" />
-          </Tooltip>
-        </div>
-      ),
-    },
-    {
-      img: ava5,
-      Title: "Add the New Landing Page",
-      bud: "$4,000",
-      progress: <Progress percent={80} size="small" />,
-      member: (
-        <div className="avatar-group mt-2">
-          <Tooltip placement="bottom" title="Ryan Tompson">
-            <img className="tootip-img" src={team1} alt="" />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Romina Hadid">
-            <img className="tootip-img" src={team2} alt="" />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Alexander Smith">
-            <img className="tootip-img" src={team3} alt="" />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Jessica Doe">
-            <img className="tootip-img" src={team4} alt="" />
-          </Tooltip>
-        </div>
-      ),
-    },
+  const [data, setData] = useState([]);
 
-    {
-      img: ava6,
-      Title: "Redesign Online Store",
-      bud: "$2,000",
-      progress: (
-        <Progress
-          percent={100}
-          size="small"
-          status="exception"
-          format={() => "Cancel"}
-        />
-      ),
-      member: (
-        <div className="avatar-group mt-2">
-          <Tooltip placement="bottom" title="Ryan Tompson">
-            <img className="tootip-img" src={team1} alt="" />
-          </Tooltip>
-          <Tooltip placement="bottom" title="Romina Hadid">
-            <img className="tootip-img" src={team2} alt="" />
-          </Tooltip>
-        </div>
-      ),
-    },
-  ];
+  const getData = async () => {
+    let [todays,months,total] = await Promise.all([getTodaysRequests(),getMonthsRequests(),getTotalRequests()]);
+    // let todays = await getTodaysRequests();
 
-  const timelineList = [
-    {
-      title: "$2,400 - Redesign store",
-      time: "09 JUN 7:20 PM",
-      color: "green",
-    },
-    {
-      title: "New order #3654323",
-      time: "08 JUN 12:20 PM",
-      color: "green",
-    },
-    {
-      title: "Company server payments",
-      time: "04 JUN 3:10 PM",
-    },
-    {
-      title: "New card added for order #4826321",
-      time: "02 JUN 2:45 PM",
-    },
-    {
-      title: "Unlock folders for development",
-      time: "18 MAY 1:30 PM",
-    },
-    {
-      title: "New order #46282344",
-      time: "14 MAY 3:30 PM",
-      color: "gray",
-    },
-  ];
+    // let months = await getMonthsRequests();
+    // let total = await getTotalRequests();
+    setData([
+      {
+        today: "Today’s Clicks",
+        title: `${todays.data.count}`,
+        persent: todays.data.percentage > 0 ? `+${todays.data.percentage}%` : `-${todays.data.percentage}%`,
+        icon: profile,
+        bnb: todays.data.percentage > 0 ? "bnb2" : "redtext",
+      },
+      {
+        today: "Month's Clicks",
+        title: `${months.data.count}`,
+        persent: months.data.percentage > 0 ? `+${todays.data.percentage}%` : `-${todays.data.percentage}%`,
+        icon: profile,
+        bnb: months.data.percentage > 0 ? "bnb2" : "redtext",
+      },
+      {
+        today: "Total Clicks",
+        title: `${total.data.count}`,
+        persent: total.data.percentage > 0 ? `+${todays.data.percentage}%` : `-${todays.data.percentage}%`,
+        icon: profile,
+        bnb: total.data.percentage > 0 ? "bnb2" : "redtext",
+      },
+      {
+        today: "Predictions",
+        title: "0",
+        persent: "10%",
+        icon: profile,
+        bnb: "bnb2",
+      },
+    ]);
+  }
 
-  const uploadProps = {
-    name: "file",
-    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    headers: {
-      authorization: "authorization-text",
-    },
-    onChange(info) {
-      if (info.file.status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === "done") {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-  };
-
+  useEffect(()=>{
+    getData();
+  },[])
   return (
     <>
       <div className="layout-content">
         <Row className="rowgap-vbox" gutter={[24, 0]}>
-          {count.map((c, index) => (
+          {data.map((c, index) => (
             <Col
               key={index}
               xs={24}

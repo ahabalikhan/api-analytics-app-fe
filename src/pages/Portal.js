@@ -81,7 +81,6 @@ const Portal = () => {
     const onFinish = async (values) => {
       console.log("Success:", values);
       var ok = await getToken(values);
-      console.log(123)
       if (ok){
         history.push("/dashboard");
       }

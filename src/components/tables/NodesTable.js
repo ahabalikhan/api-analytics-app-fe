@@ -1,5 +1,7 @@
 import { Space, Table, Tag } from 'antd';
 import React from 'react';
+import { useEffect, useState } from 'react';
+import { getChart } from '../../ApiServices/consumer-application.service';
 import { getNodeList } from '../../ApiServices/node.service';
 
 const columns = [
@@ -15,34 +17,48 @@ const columns = [
     key: 'node',
   },
 ];
-const data = [
-  {
-    key: '1',
-    id: '1',
-    node: 'Home',
-  },
-  {
-    key: '2',
-    id: 2,
-    node: 'Contact',
-  },
-  {
-    key: '3',
-    id: 3,
-    node: 'About',
-  },
-  {
-    key: '4',
-    id: 4,
-    node: 'Blogs',
-  },
-  {
-    key: '5',
-    id: 5,
-    node: 'Articles',
-  },
-];
+// const data = [
+//   {
+    
+//     id: 1,
+//     node: 'Home',
+//   },
+//   {
+   
+//     id: 2,
+//     node: 'Contact',
+//   },
+//   {
+   
+//     id: 3,
+//     node: 'About',
+//   },
+//   {
+   
+//     id: 4,
+//     node: 'Blogs',
+//   },
+//   {
+   
+//     id: 5,
+//     node: 'Articles',
+//   },
+// ];
 
-const NodesTable = () => <Table columns={columns} dataSource={data} />
+const NodesTable = () =>{ 
+  const [data, setData] = useState(null);
+
+  const getData = async () => {
+    let response = await getNodeList();
+    setData(response.data.map(x => ({id: x.id, node:x.name})));
+  }
+
+  useEffect(()=>{
+    getData();
+  },[])
+
+
+  return (data && <Table columns={columns} dataSource={data} />)
+}
 
 export default NodesTable;
