@@ -14,7 +14,8 @@ export const SERVICE_CONFIG_URLS = {
         CHART: `${CONTROLLER_NAMES.CONSUMER_APPLICATION}/{token}/chart`,
     },
     NODE: {
-        LIST: `${CONTROLLER_NAMES.NODE}/{token}`
+        LIST: `${CONTROLLER_NAMES.NODE}/{token}`,
+        GRAPH: `${CONTROLLER_NAMES.NODE}/graph/{token}`
     },
     PORTAL_AUTH:{
         TOKEN: `${CONTROLLER_NAMES.PORTAL_AUTH}/token`

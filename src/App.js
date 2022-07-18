@@ -20,7 +20,7 @@ function App() {
         <Main>
           <Route exact path="/dashboard" component={Home} />
           <Route exact path="/rtl" component={Rtl} />
-          <Redirect from="*" to="/dashboard" />
+          <Redirect from="*" to="/portal" />
         </Main>
       </Switch>
     </div>

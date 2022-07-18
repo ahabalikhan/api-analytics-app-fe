@@ -19,7 +19,7 @@ function LineChart() {
           offsetY: 0,
         },
       ],
-    
+
       options: {
         chart: {
           width: "100%",
@@ -29,18 +29,18 @@ function LineChart() {
             show: false,
           },
         },
-    
+
         legend: {
           show: false,
         },
-    
+
         dataLabels: {
           enabled: false,
         },
         stroke: {
           curve: "smooth",
         },
-    
+
         yaxis: {
           labels: {
             style: {
@@ -50,7 +50,7 @@ function LineChart() {
             },
           },
         },
-    
+
         xaxis: {
           labels: {
             style: {
@@ -71,7 +71,7 @@ function LineChart() {
           },
           categories: response.data.months,
         },
-    
+
         tooltip: {
           y: {
             formatter: function (val) {
@@ -83,9 +83,9 @@ function LineChart() {
     })
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getData();
-  },[])
+  }, [])
   return (
     <>
       <div className="linechart">
@@ -98,15 +98,15 @@ function LineChart() {
           </ul>
         </div>
       </div>
-{data &&
-      <ReactApexChart
-        className="full-width"
-        options={data?.options}
-        series={data?.series}
-        type="area"
-        height={350}
-        width={"100%"}
-      />}
+      {data &&
+        <ReactApexChart
+          className="full-width"
+          options={data?.options}
+          series={data?.series}
+          type="area"
+          height={350}
+          width={"100%"}
+        />}
     </>
   );
 }
