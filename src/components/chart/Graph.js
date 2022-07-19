@@ -1,14 +1,30 @@
+import { useEffect, useState } from 'react';
 import { ForceGraph2D } from 'react-force-graph';
+import { getNodes } from '../../ApiServices/node.service';
 
-function Graph({ graphData }) {
+function Graph() {
 
+  const [data, setData] = useState();
+
+  const getData = async () => {
+    let response = await getNodes();
+    console.log(response.data);
+    setData({
+      nodes: response.data.nodes,
+      links: response.data.links
+    })
+  }
+
+  useEffect(()=>{
+    getData();
+  }, [])
 
   return (
     <div>
       {/* <div className='title'><h1>Graph</h1></div> */}
       <ForceGraph2D
         style={{ border: "1px solid black" }}
-        graphData={graphData}
+        graphData={data}
         nodeLabel="id"
         nodeAutoColorBy="group"
         linkDirectionalParticles="value"
@@ -27,7 +43,7 @@ function Graph({ graphData }) {
 
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.fillStyle = 'blue';// node.color;
+          ctx.fillStyle = '#1890ff';// node.color;
           ctx.fillText(label, node.x, node.y);
 
           node.__bckgDimensions = bckgDimensions; // to re-use in nodePointerAreaPaint

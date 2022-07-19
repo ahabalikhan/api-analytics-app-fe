@@ -38,17 +38,6 @@ import team4 from "../assets/images/team-4.jpg";
 import card from "../assets/images/info-card-1.jpg";
 import { getMonthsRequests, getTodaysRequests, getTotalRequests } from "../ApiServices/consumer-application.service";
 
-var graphData = {
-  nodes: [{ id: "A" }, { id: "B" }, { id: "C" }, { id: "D" }],
-  links: [
-    { source: "B", target: "C", value: 8 },
-    { source: "C", target: "D", value: 10 },
-    { source: "D", target: "A", value: 6 },
-    { source: "B", target: "A", value: 6 },
-    { source: "B", target: "D", value: 6 },
-    { source: "D", target: "D", value: 6, curvature: 0.3 }
-  ]
-};
 
 function Home() {
   const { Title, Text } = Typography;
@@ -177,7 +166,7 @@ function Home() {
   const [data, setData] = useState([]);
 
   const getData = async () => {
-    let [todays,months,total] = await Promise.all([getTodaysRequests(),getMonthsRequests(),getTotalRequests()]);
+    let [todays, months, total] = await Promise.all([getTodaysRequests(), getMonthsRequests(), getTotalRequests()]);
     // let todays = await getTodaysRequests();
 
     // let months = await getMonthsRequests();
@@ -214,9 +203,10 @@ function Home() {
     ]);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getData();
-  },[])
+  }, []);
+
   return (
     <>
       <div className="layout-content">
@@ -275,7 +265,7 @@ function Home() {
                 <div>
                   <Title level={5}>Graph</Title>
                 </div>
-                <Graph graphData={graphData} />
+                <Graph />
               </div>
             </Card>
           </Col>

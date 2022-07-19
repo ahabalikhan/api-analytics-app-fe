@@ -19,13 +19,13 @@ function EChart() {
           color: "#fff",
         },
       ],
-    
+
       options: {
         chart: {
           type: "bar",
           width: "100%",
           height: "auto",
-    
+
           toolbar: {
             show: false,
           },
@@ -95,7 +95,7 @@ function EChart() {
             },
           },
         },
-    
+
         tooltip: {
           y: {
             formatter: function (val) {
@@ -107,30 +107,30 @@ function EChart() {
     })
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getData();
-  },[])
+  }, [])
 
   return (
     <>
-    
+
       <div id="chart">
-      {data &&
-        <ReactApexChart
-          className="bar-chart"
-          options={data.options}
-          series={data.series}
-          type="bar"
-          height={300}
-        />
-      }
+        {data &&
+          <ReactApexChart
+            className="bar-chart"
+            options={data.options}
+            series={data.series}
+            type="bar"
+            height={300}
+          />
+        }
       </div>
       <div className="chart-vistior">
         <Title level={5}>Monthly Usage</Title>
         <Paragraph className="lastweek">
           Here you can see the usage of your website over previous months.
         </Paragraph>
-        
+
       </div>
     </>
   );

@@ -108,21 +108,9 @@ const GenerateKey = () => {
           <div className="header-col header-nav">
             <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
               <Menu.Item key="1">
-                <Link to="/dashboard">
-                  {template}
-                  <span> Dashboard</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="3">
                 <Link to="/portal">
                   {signup}
                   <span> Portal</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="4">
-                <Link to="/generate-key">
-                  {signin}
-                  <span> Generate Key</span>
                 </Link>
               </Menu.Item>
             </Menu>
