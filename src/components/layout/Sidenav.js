@@ -90,7 +90,7 @@ function Sidenav({ color }) {
     <>
       <div className="brand">
         <img src={logo} alt="" />
-        <span>Dashboard</span>
+        <span>API Analytics Dashboard</span>
       </div>
       <hr />
       <Menu theme="light" mode="inline">
@@ -117,19 +117,6 @@ function Sidenav({ color }) {
           <NavLink to="/portal">
             <span className="icon">{portal}</span>
             <span className="label">Portal</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="4">
-          <NavLink to="/rtl">
-            <span
-              className="icon"
-              style={{
-                background: page === "rtl" ? color : "",
-              }}
-            >
-              {rtl}
-            </span>
-            <span className="label">RTL</span>
           </NavLink>
         </Menu.Item>
       </Menu>

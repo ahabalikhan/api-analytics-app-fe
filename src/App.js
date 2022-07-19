@@ -10,6 +10,7 @@ import Main from "./components/layout/Main";
 import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
+import LocalStorageService from './core/util/local-storage.service';
 
 function App() {
   return (
@@ -18,8 +19,7 @@ function App() {
         <Route path="/portal" exact component={Portal} />
         <Route path="/generate-key" exact component={GenerateKey} />
         <Main>
-          <Route exact path="/dashboard" component={Home} />
-          <Route exact path="/rtl" component={Rtl} />
+        {LocalStorageService.get("token",null) ? <Route exact path="/dashboard" component={Home} /> : <Redirect to="/portal" />}
           <Route exact path="/">
             <Redirect to="/portal" />
           </Route>
