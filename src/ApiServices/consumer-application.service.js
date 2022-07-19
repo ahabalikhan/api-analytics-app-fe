@@ -41,6 +41,16 @@ export async function getTotalRequests(){
     return keysResponse;
 }
 
+export async function getPredictions(){
+    const token = LocalStorageService.get("token", null)
+    if (token == null){
+        return null;
+    }
+    const keysResponse = await apiService.get(utilService.createDynamicUrl(SERVICE_CONFIG_URLS.CONSUMER_APPLICATION.PREDICTIONS, {token:token}));
+
+    return keysResponse;
+}
+
 export async function getChart(){
     const token = LocalStorageService.get("token", null)
     if (token == null){

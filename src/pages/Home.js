@@ -36,7 +36,7 @@ import team2 from "../assets/images/team-2.jpg";
 import team3 from "../assets/images/team-3.jpg";
 import team4 from "../assets/images/team-4.jpg";
 import card from "../assets/images/info-card-1.jpg";
-import { getMonthsRequests, getTodaysRequests, getTotalRequests } from "../ApiServices/consumer-application.service";
+import { getMonthsRequests, getPredictions, getTodaysRequests, getTotalRequests } from "../ApiServices/consumer-application.service";
 
 
 function Home() {
@@ -166,7 +166,7 @@ function Home() {
   const [data, setData] = useState([]);
 
   const getData = async () => {
-    let [todays, months, total] = await Promise.all([getTodaysRequests(), getMonthsRequests(), getTotalRequests()]);
+    let [todays, months, total, predictions] = await Promise.all([getTodaysRequests(), getMonthsRequests(), getTotalRequests(), getPredictions()]);
     // let todays = await getTodaysRequests();
 
     // let months = await getMonthsRequests();
@@ -195,10 +195,10 @@ function Home() {
       },
       {
         today: "Predictions",
-        title: "0",
-        persent: "10%",
+        title: `${predictions.data.count}`,
+        persent: predictions.data.percentage > 0 ? `+${predictions.data.percentage}%` : `-${predictions.data.percentage}%`,
         icon: profile,
-        bnb: "bnb2",
+        bnb: predictions.data.percentage > 0 ? "bnb2" : "redtext",
       },
     ]);
   }

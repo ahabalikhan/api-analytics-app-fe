@@ -11,6 +11,7 @@ export const SERVICE_CONFIG_URLS = {
         TODAYS_REQUESTS: `${CONTROLLER_NAMES.CONSUMER_APPLICATION}/{token}/todays-requests`,
         MONTHS_REQUESTS: `${CONTROLLER_NAMES.CONSUMER_APPLICATION}/{token}/months-requests`,
         TOTAL_REQUESTS: `${CONTROLLER_NAMES.CONSUMER_APPLICATION}/{token}/total-requests`,
+        PREDICTIONS: `${CONTROLLER_NAMES.CONSUMER_APPLICATION}/{token}/predictions`,
         CHART: `${CONTROLLER_NAMES.CONSUMER_APPLICATION}/{token}/chart`,
     },
     NODE: {
