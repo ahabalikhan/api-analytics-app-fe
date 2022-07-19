@@ -27,6 +27,7 @@ import {
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import avtar from "../assets/images/team-2.jpg";
+import openedDoor from "../assets/images/opened-door.svg"
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -261,7 +262,7 @@ function Header({
   return (
     <>
       <div className="setting-drwer" onClick={showDrawer}>
-        {setting}
+        {openedDoor}
       </div>
       <Row gutter={[24, 0]}>
         <Col span={24} md={6}>
