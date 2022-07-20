@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   Layout,
   Menu,
@@ -11,6 +11,8 @@ import {
 
 import { Link, useHistory } from "react-router-dom";
 import { getToken } from "../ApiServices/portal-auth.service";
+import logo from "../assets/images/logo.png"
+import key from "../assets/images/key-light-gray.png"
 
 const { Title } = Typography;
 const { Header, Content } = Layout;
@@ -78,8 +80,9 @@ const signin = [
 ];
 const Portal = () => {
     const history = useHistory();
+    const [loading,setLoading] = useState(false)
     const onFinish = async (values) => {
-      console.log("Success:", values);
+      setLoading(true);
       var ok = await getToken(values);
       if (ok){
         history.push("/dashboard");
@@ -93,14 +96,11 @@ const Portal = () => {
       <>
         <div className="layout-default ant-layout layout-sign-up">
           <Header>
-            <div className="header-col header-brand">
-              <h5>API Analytics Portal</h5>
-            </div>
             <div className="header-col header-nav">
               <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
                 <Menu.Item key="1">
                   <Link to="/generate-key">
-                    {signin}
+                  <img src={key} height={20} width={20}/>
                     <span> Generate Key</span>
                   </Link>
                 </Menu.Item>
@@ -111,6 +111,7 @@ const Portal = () => {
           <Content className="p-0">
             <div className="sign-up-header">
               <div className="content">
+              <img src={logo} height={100} width={100}/>
                 <Title>API Analytics Portal</Title>
               </div>
             </div>
@@ -149,6 +150,7 @@ const Portal = () => {
                     style={{ width: "100%" }}
                     type="primary"
                     htmlType="submit"
+                    loading={loading}
                   >
                     GET ANALYTICS
                   </Button>

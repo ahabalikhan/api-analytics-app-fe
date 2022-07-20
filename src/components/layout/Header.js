@@ -135,10 +135,7 @@ function Header({
                 </div>
               </div>
           </Drawer>
-          {/* <Link to="/sign-in" className="btn-sign-in">
-            {profile}
-            <span>Generate Key</span>
-          </Link> */}
+          
         </Col>
       </Row>
     </>

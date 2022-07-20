@@ -959,7 +959,7 @@ button.ant-btn.bell strong {
   color: #fff;
   border-radius: 0.5rem;
   margin-left: auto;
-  line-height: 55px;
+  padding-top: 3px;
 }
 
 .icon-box span {
