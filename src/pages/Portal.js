@@ -81,12 +81,13 @@ const signin = [
 const Portal = () => {
     const history = useHistory();
     const [loading,setLoading] = useState(false)
+    const [isError, setError] = useState(false)
     const onFinish = async (values) => {
       setLoading(true);
-      var ok = await getToken(values);
-      if (ok){
-        history.push("/dashboard");
-      }
+      getToken(values).then(x => history.push("/dashboard"))
+      .catch(x => { 
+        setLoading(false);
+        setError(true);});
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -145,7 +146,10 @@ const Portal = () => {
                   <Input placeholder="Secret Key" />
 
                 </Form.Item>
-                <Form.Item>
+                <Form.Item
+                validateStatus={isError ? "error" : null} 
+                help={isError ? "Invalid Key Pair" : null}
+                >
                   <Button
                     style={{ width: "100%" }}
                     type="primary"
