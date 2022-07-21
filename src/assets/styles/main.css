@@ -1,14 +1,3 @@
-/*!
-=========================================================
-* Muse Ant Design Dashboard - v1.0.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
-* Coded by Creative Tim
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 body {
   padding: 0 0 30px 0;
   background-color: #fafafa;
@@ -970,7 +959,7 @@ button.ant-btn.bell strong {
   color: #fff;
   border-radius: 0.5rem;
   margin-left: auto;
-  line-height: 55px;
+  padding-top: 3px;
 }
 
 .icon-box span {
@@ -1806,7 +1795,7 @@ body {
   background-size: cover;
   background-position: 50%;
   text-align: center;
-  background: url("../images/bg-signup.jpg") no-repeat center top;
+  background: url("../images/graph-signup.jpg") no-repeat center top;
 }
 .header-col.header-brand {
   white-space: nowrap;
@@ -2122,6 +2111,7 @@ body {
   color: #8c8c8c;
   font-size: 20px;
   white-space: normal;
+  margin-bottom: 1.2em;
 }
 .ant-row.ant-form-item.username {
   display: block;
@@ -2189,6 +2179,7 @@ body {
 @media (min-width: 768px) {
   .sign-img img {
     margin: 0;
+    margin-left: 110px;
   }
   .card-signup {
     margin-bottom: 120px;
@@ -3046,3 +3037,52 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   path {
   fill: #8c8c8c;
 }
+
+.layout-dashboard .ant-layout-sider.sider-primary .aside-footer {
+  margin-top: 155px;
+}
+
+.ant-form-item-label > label {
+  display: none;
+}
+
+.dynamic-delete-button {
+  position: relative;
+  top: 4px;
+  margin: 0 8px;
+  color: #999;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.dynamic-delete-button:hover {
+  color: #777;
+}
+.dynamic-delete-button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.project-ant {
+  display: block;
+}
+
+p {
+  font-weight: 700;
+  line-height: 1.8;
+  margin-top: 1.5rem;
+}
+
+p span {
+  margin-right: 0.5rem;
+  background: #1890ff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  color: white;
+}
+
+.keys-section{
+  margin-top: 40px;
+}
+
+.dashboard-portal { display: none;}
